@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/928c4a0a9a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Day by Day Planner</title>
+</head>
+
+<body>
+  <header class="jumbotron text-center">
+    <h1 class="display-4">Day by Day Planner</h1>
+    <h2 class="lead" id="date-display">Today's Date</h2>
+  </header>
+  <main class="planner-container">
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">Morning</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="morning"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">9:00AM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="9"><textarea class="plan-text-area" id="9am"></textarea><i
+          class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">10:00AM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="10"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">11:00AM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id=11><textarea class="plan-text-area" id="9am"></textarea><i
+          class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">12:00PM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="12"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">1:00PM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="13"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">2:00PM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="14"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">3:00PM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="15"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">4:00PM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="16"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">5:00PM</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="17"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+    <div class="hour-slot mx-md-3 mx-lg-5 row">
+      <div class="time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center">Evening</div>
+      <div class="plan-box col col-9 col-sm-10 col-lg-11" id="evening"><textarea class="plan-text-area"
+          id="9am"></textarea><i class="far fa-save" size="5x"></i></div>
+    </div>
+
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
+<!-- 
+# 05 Third-Party APIs: Work Day Scheduler
+
+Create a simple calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+
+You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+
+## User Story
+
+```
+AS AN employee with a busy schedule
+I WANT to add important events to a daily planner
+SO THAT I can manage my time effectively
+```
+
+## Acceptance Criteria
+
+```
+GIVEN I am using a daily planner to create a schedule
+- WHEN I open the planner
+*** DONE *** THEN the current day is displayed at the top of the calendar
+- WHEN I scroll down
+*** DONE *** THEN I am presented with timeblocks for standard business hours
+- WHEN I view the timeblocks for that day
+*** DONE *** THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+
+WHEN I click into a timeblock
+THEN I can enter an event
+WHEN I click the save button for that timeblock
+THEN the text for that event is saved in local storage
+WHEN I refresh the page
+THEN the saved events persist
+``` -->
