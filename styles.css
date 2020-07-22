@@ -4,23 +4,27 @@ div.col {
 }
 
 div.past-hour {
+  border-radius: 0px 15px 0px 0px;
   background-color: lightcoral;
 }
 
 div.current-hour {
+  border-radius: 0px 15px 0px 0px;
   background-color: darkseagreen;  
 }
 
 div.future-hour {
+  border-radius: 0px 15px 0px 0px;
   background-color: lightblue;
 }
 
-div.hour-slot {
+div.time-block {
   min-height: 50px;
   border-bottom: 1px solid rgb(151, 151, 151);
   margin: 5px 0px;
   position: relative;
   padding: 0px;
+  
 }
 textarea.plan-text-area {
   background: transparent;
@@ -37,16 +41,13 @@ textarea.plan-text-area {
   border-right: 1px solid rgb(151, 151, 151);
 }
 
-.save-box {
-  background-color: crimson;
-}
-
 .fa-save {
   position: absolute;
   right: 10px;
-  top: 8px;
+  top: 12px;
   color: aliceblue;
-
+  cursor: pointer;
   font-size: 2em;
 }
+
 
