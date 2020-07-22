@@ -45,9 +45,17 @@ textarea.plan-text-area {
   position: absolute;
   right: 10px;
   top: 12px;
+  transition: color 300ms;
   color: aliceblue;
   cursor: pointer;
   font-size: 2em;
 }
 
-
+.fa-saved {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  color: lightgreen;
+  cursor: pointer;
+  font-size: 2em;
+}

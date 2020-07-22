@@ -1,13 +1,34 @@
 $(document).ready(function () {
+
+  const plannerContainer = $(".planner-container");
   const dateDisplay = $("#date-display");
   const todaysDate = moment().format("MMMM DD, YYYY");
+
+  function addTimeBlock() {
+    let planTimeDisplay = moment().hour(8).format("h:00A");
+    for (let i = 0; i < 11; i++) {
+      planTimeDisplay = moment().hour(8 + i).format("h:00A");
+      if (planTimeDisplay === "8:00AM") { planTimeDisplay = "Morning" };
+      if (planTimeDisplay === "6:00PM") { planTimeDisplay = "Evening" };
+      const timeBlockDiv = $("<div>").addClass("time-block mx-md-3 mx-lg-5 row");
+      plannerContainer.append(timeBlockDiv);
+      timeBlockDiv.append($("<div>").addClass("time-box col-3 col-sm-2 col-lg-1 d-flex align-items-center").text(planTimeDisplay));
+      const planBoxDiv = $("<div>").addClass("plan-box col col-9 col-sm-10 col-lg-11").attr("id", i + 8);
+      timeBlockDiv.append(planBoxDiv);
+      planBoxDiv.append($("<textarea>").addClass("plan-text-area"));
+      planBoxDiv.append($("<i>").addClass("far fa-save"));
+      planTimeDisplay = moment().hour(8 + i).format("h:00A");
+    }
+  }
+  addTimeBlock();
+
   const timeBlock = $(".time-block");
   const planTextArea = $(".plan-text-area");
 
 
   // Initializing the Day planner array
   let dayPlanArray = JSON.parse(localStorage.getItem("saved-plan"));
-  if (dayPlanArray === null) {
+  if (!dayPlanArray) {
     dayPlanArray = ["", "", "", "", "", "", "", "", "", "", ""];
   }
   localStorage.setItem("saved-plan", JSON.stringify(dayPlanArray));
@@ -19,16 +40,9 @@ $(document).ready(function () {
 
     })
   }
-  writeThePlans();
 
   // set up variable for altering time blocks
   const planBox = $(".plan-box");
-
-  // This may eventually be a clock
-  // setInterval(function () {
-  //   let m2Time = moment().format("h:mm:ss A");
-  //   console.log(m2Time);
-  // }, 1000)
 
   // Displaying the current date as header
   dateDisplay.text(todaysDate);
@@ -37,65 +51,43 @@ $(document).ready(function () {
   // establish the time in variable as 24 hour time
   const militaryTime = parseInt(moment().format("HH"));
 
-  // Conditionals for morning and evening blocks
-
-  // setting the variables for morning evening blocks
-  const morningBlock = $("#8");
-  const eveningBlock = $("#18");
-
-  // morning block
-  if (militaryTime < 9) {
-    morningBlock.addClass("current-hour");
-  } else {
-    morningBlock.addClass("past-hour");
-  }
-
-  // evening block
-  if (militaryTime < 18) {
-    eveningBlock.addClass("future-hour");
-  } else {
-    eveningBlock.addClass("current-hour");
-  }
-
-  // Jquery forEach function to run through time block divs and asses place on timeline.
-  planBox.each(function () {
-
-    if (parseInt($(this).attr("id")) < militaryTime) {
-      $(this).addClass("past-hour");
-    }
-
-    if (parseInt($(this).attr("id")) === militaryTime) {
-      $(this).addClass("current-hour");
-    }
-
-    if (parseInt($(this).attr("id")) > militaryTime) {
-      $(this).addClass("future-hour");
-    }
-
-  });
-
   // Let's save the plan!
-
   timeBlock.on("click", function () {
-    const saveButt = event.target;
+    let saveButt = event.target;
 
     const enteredEvent = $(this).find(".plan-text-area").val();
     const eventArrayIndex = parseInt($(this).find(".plan-box").attr("id") - 8);
 
-    // console.log(`this is the variable looking for the plan-box id ${eventArrayIndex}`);
-    // console.log(`this is looking for the plan-box id ${$(this).find(".plan-box").attr("id")}`);
-
-    // console.log($(this).find(".plan-text-area").val());
-    // console.log($(this).find("i").attr("id"));
-
     if (saveButt.matches("i")) {
-      // console.log(`inside the conditional we have the message = ${enteredEvent} and the time which = ${eventArrayIndex}:00`);
+      saveButt = $(this).find("i");
       dayPlanArray[eventArrayIndex] = enteredEvent;
-      // console.log(dayPlanArray);
       localStorage.setItem("saved-plan", JSON.stringify(dayPlanArray));
+      saveButt.addClass("fa-saved");
       writeThePlans();
+      setInterval(function () {
+        saveButt.removeClass("fa-saved");
+      }, 1000);
     }
   });
 
+  // Jquery forEach function to run through time block divs to asses past/present/future class.
+  planBox.each(function () {
+
+    if (parseInt($(this).attr("id")) === 8 && parseInt($(this).attr("id")) >= militaryTime) {
+      $(this).addClass("current-hour");
+    } else if (parseInt($(this).attr("id")) === 18 && parseInt($(this).attr("id")) <= militaryTime) {
+      $(this).addClass("current-hour");
+    } else if (parseInt($(this).attr("id")) < militaryTime) {
+      $(this).addClass("past-hour");
+    } else if (parseInt($(this).attr("id")) === militaryTime) {
+      $(this).addClass("current-hour");
+    } else {
+      $(this).addClass("future-hour");
+    }
+  });
+
+  writeThePlans();
+
   // All code above here.
+
 });
