@@ -3,15 +3,16 @@ $(document).ready(function () {
   // Setting up the early variables/grabbing the primary elements.
   const plannerContainer = $(".planner-container");
   const dateDisplay = $("#date-display");
-  const now = moment()
+  let now = moment().format("MMMM DD, YYYY");
   const clockDelineator = $(".clock-delineator");
   const clockDisplay = $(".clock-display");
 
   // Displaying the current date as header
-  dateDisplay.text(now.format("MMMM DD, YYYY"));
+  dateDisplay.text(now);
 
   // Building the time-blocks to fill the planner.
   function addTimeBlock() {
+
     // Setting moment up to use it to populate the times
     let planTimeDisplay = moment().hour(8).format("h:00A");
     for (let i = 0; i < 11; i++) {
@@ -41,7 +42,17 @@ $(document).ready(function () {
   // Initializing the Day planner array to use for local storage
   let dayPlanArray = JSON.parse(localStorage.getItem("saved-plan"));
   if (!dayPlanArray) {
-    dayPlanArray = ["", "", "", "", "", "", "", "", "", "", ""];
+    initializeDayPlanArray();
+  }
+
+  function initializeDayPlanArray() {
+
+    dayPlanArray = ["", "", "", "", "", "", "", "", "", "", "", ""];
+
+    // Clearing the plans each day!
+    dayPlanArray[11] = now;
+    localStorage.setItem("saved-plan", JSON.stringify(dayPlanArray));
+    writeThePlans();
   }
 
   // Sending the Day Planner array to storage
@@ -110,6 +121,12 @@ $(document).ready(function () {
   // We're going to run the color code function every second to update the clock and set the colors.
   setInterval(function () {
     colorCode();
+
+    // check current date to clear calendar each day
+    now = moment().format("MMMM DD, YYYY");
+    if (now != dayPlanArray[11]) {
+      initializeDayPlanArray();
+    }
   }, 1000)
 
   // Start the app by  building the planner and setting up the colors and clock.

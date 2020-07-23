@@ -1,7 +1,7 @@
 # day-by-day-planner
-Keep your day organized at a glance with the Day by Day planner.
+A lesson in presence. Day By Day planner, a day planner for the current day. No planning for tomorrow or wasting time on the past. Keep your day organized at a glance with the Day by Day planner.
 
-Busy days causing stress and anxiety? Get control of your schedule and relax with Day By Day Planner, the stylish, attractive, easy-to-use day scheduler.
+Eliminate the stress by focussing on today. Get control of your schedule and relax with Day By Day Planner, the stylish, attractive, easy-to-use today only scheduler.
 
 - View the app here - https://keiththarp.github.io/day-by-day-planner/
 
@@ -13,7 +13,7 @@ I began by acquainting myself with Moment.JS and practicing with it as well as J
 
 ## Lessons In Coding
 
-After getting my MVP set up and deployed, I worked on fine-tuning the code and add a couple features I had in mind. This process helped me familiarize myself with building html elements on the fly with JavaScript/Jquery.
+After getting my MVP set up and deployed, I worked on fine-tuning the code and add a couple features I had in mind. This process helped me familiarize myself with building html elements on the fly with JavaScript/Jquery. Several fun logic problems to work through, especially with the bonus items like clearing the calendar each day and setting the sliding clock.
 
 **Updating colors**
 
