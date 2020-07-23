@@ -3,21 +3,36 @@ div.col {
   padding: 0px;
   height: 54px;
 }
+
 header.plan-header {
+  background-color: #fff973;
+  background-image: url(./assets/planner-header.png);
+  background-position: left;
+  background-repeat: no-repeat; 
   padding-top: 15px;
   height: 200px;
+}
+
+h1.title {
+  text-align: center;
+}
+h2.date {
+  font-weight: 200;
+  text-align: center;
 }
 
 div.planner-container {
   position: relative;
 }
+
+/* Sliding clock style */
 div.clock-delineator {
   z-index: 99;
   position: absolute;
   width: 100%;
-  border-bottom: 1 px solid red;
+  border-bottom: 1px solid red;
   padding-right: 95px;
-  top: 296px;
+  top: 234px;
   text-align: right;
   pointer-events: none;
 }
@@ -28,8 +43,7 @@ span.clock-display {
   color: white;
 }
 
-
-
+/* Time block past/present/future styles */
 div.past-hour {
   border-radius: 0px 15px 0px 0px;
   background-color: lightcoral;
@@ -45,6 +59,7 @@ div.future-hour {
   background-color: lightblue;
 }
 
+/* Setting height specifically to help with sliding clock */
 div.time-block {
   height: 55px;
   border-bottom: 1px solid rgb(151, 151, 151);
@@ -53,6 +68,8 @@ div.time-block {
   padding: 0px;
   
 }
+
+/* Getting rid of standard textarea styling */
 textarea.plan-text-area {
   background: transparent;
   outline: none;
@@ -70,6 +87,7 @@ textarea.plan-text-area {
   z-index: 910;
 }
 
+/* Setting up the save icon and save feedback */
 .fa-save {
   position: absolute;
   right: 10px;
@@ -91,7 +109,7 @@ textarea.plan-text-area {
   z-index: 910;
 }
 
-/* adjusting the clock placement per screen. */
+/* adjusting the clock placement for smaller screens. */
 @media only screen and (max-width: 767px) {
   div.clock-delineator {    
     padding-right: 44px;
