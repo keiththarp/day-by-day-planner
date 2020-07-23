@@ -2,10 +2,15 @@ $(document).ready(function () {
 
   const plannerContainer = $(".planner-container");
   const dateDisplay = $("#date-display");
-  const todaysDate = moment().format("MMMM DD, YYYY");
+  const now = moment()
+  const clockDelineator = $(".clock-delineator");
+  const clockDisplay = $(".clock-display");
+  console.log(now.format("hh:mm"));
+
 
   function addTimeBlock() {
     let planTimeDisplay = moment().hour(8).format("h:00A");
+    // let planTimeDisplay = now.format("h:00A");
     for (let i = 0; i < 11; i++) {
       planTimeDisplay = moment().hour(8 + i).format("h:00A");
       if (planTimeDisplay === "8:00AM") { planTimeDisplay = "Morning" };
@@ -17,10 +22,11 @@ $(document).ready(function () {
       timeBlockDiv.append(planBoxDiv);
       planBoxDiv.append($("<textarea>").addClass("plan-text-area"));
       planBoxDiv.append($("<i>").addClass("far fa-save"));
-      planTimeDisplay = moment().hour(8 + i).format("h:00A");
+      // planTimeDisplay = now.hour(8 + i).format("h:00A");
     }
   }
   addTimeBlock();
+  console.log(now.format("hh:mm"));
 
   const timeBlock = $(".time-block");
   const planTextArea = $(".plan-text-area");
@@ -45,11 +51,8 @@ $(document).ready(function () {
   const planBox = $(".plan-box");
 
   // Displaying the current date as header
-  dateDisplay.text(todaysDate);
+  dateDisplay.text(now.format("MMMM DD, YYYY"));
 
-  // *** Time Block past/present/future color coding ***
-  // establish the time in variable as 24 hour time
-  const militaryTime = parseInt(moment().format("HH"));
 
   // Let's save the plan!
   timeBlock.on("click", function () {
@@ -64,29 +67,56 @@ $(document).ready(function () {
       localStorage.setItem("saved-plan", JSON.stringify(dayPlanArray));
       saveButt.addClass("fa-saved");
       writeThePlans();
-      setInterval(function () {
+      setTimeout(function () {
         saveButt.removeClass("fa-saved");
       }, 1000);
     }
   });
 
-  // Jquery forEach function to run through time block divs to asses past/present/future class.
-  planBox.each(function () {
+  let clockPosition = 234;
 
-    if (parseInt($(this).attr("id")) === 8 && parseInt($(this).attr("id")) >= militaryTime) {
-      $(this).addClass("current-hour");
-    } else if (parseInt($(this).attr("id")) === 18 && parseInt($(this).attr("id")) <= militaryTime) {
-      $(this).addClass("current-hour");
-    } else if (parseInt($(this).attr("id")) < militaryTime) {
-      $(this).addClass("past-hour");
-    } else if (parseInt($(this).attr("id")) === militaryTime) {
-      $(this).addClass("current-hour");
-    } else {
-      $(this).addClass("future-hour");
-    }
-  });
+
+  function colorCode() {
+    let currentTime = moment().subtract("5", "h").add("38", "m");
+    console.log(currentTime.format("hh:mm"));
+    // currentTime = now.format("hh:mmA")
+
+    let clockHour = parseInt(currentTime.format("H"));
+    let clockMinute = parseInt(currentTime.format("m"));
+    // clockHour = parseInt(now.format("H"));
+    // clockMinute = parseInt(now.format("m"));
+    clockPosition = clockHour * 60 + clockMinute - 299;
+    if (clockPosition < 241) { clockPosition = 234 };
+    if (clockPosition > 834) { clockPosition = 834 };
+
+    clockDisplay.text(currentTime.format("h:mm"));
+
+    clockDelineator.css("top", clockPosition);
+
+    // *** Time Block past/present/future color coding ***
+
+    // Jquery forEach function to run through time block divs to asses past/present/future class.
+    planBox.each(function () {
+
+      if (parseInt($(this).attr("id")) === 8 && parseInt($(this).attr("id")) >= clockHour) {
+        $(this).addClass("current-hour");
+      } else if (parseInt($(this).attr("id")) === 18 && parseInt($(this).attr("id")) <= clockHour) {
+        $(this).addClass("current-hour");
+      } else if (parseInt($(this).attr("id")) < clockHour) {
+        $(this).addClass("past-hour");
+      } else if (parseInt($(this).attr("id")) === clockHour) {
+        $(this).addClass("current-hour");
+      } else {
+        $(this).addClass("future-hour");
+      }
+    });
+  }
+  setInterval(function () {
+    colorCode();
+  }, 60000)
 
   writeThePlans();
+  colorCode();
 
   // All code above here.
 
