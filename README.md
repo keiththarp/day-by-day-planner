@@ -1,4 +1,4 @@
-# day-by-day-planner
+# Day-By-Day-Planner
 A lesson in presence. Day By Day planner, a day planner for the current day. No planning for tomorrow or wasting time on the past. Keep your day organized at a glance with the Day by Day planner.
 
 Eliminate the stress by focussing on today. Get control of your schedule and relax with Day By Day Planner, the stylish, attractive, easy-to-use today only scheduler.
