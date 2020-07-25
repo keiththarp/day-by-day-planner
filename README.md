@@ -30,6 +30,8 @@ After getting my MVP set up and deployed, I worked on fine-tuning the code and a
 **Acknowledgments and Credits**
 
 * Thanks to Scott, Mike, & Bobby for being a great and ever patient education team!
-* Thanks to Tiffany for inspiring me to dig deeper into the Moment.JS docs and to take more advantage of the tool.
+* Thanks to Tiffany for inspiring me to dig deeper into the Moment.JS docs and to take more advantage of the tool!
+* Thanks to Molly for pointing me toward the correct rock to look under for my time block updating issue!
 * Tons of thanks to the several different study groups that helped keep the problem solving juices flowing this week.
+
 

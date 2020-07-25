@@ -45,6 +45,13 @@ $(document).ready(function () {
     initializeDayPlanArray();
   }
 
+  // Writing the stored plans to the planner.
+  function writeThePlans() {
+    planTextArea.each(function (index) {
+      $(this).text(dayPlanArray[index]);
+    })
+  }
+
   function initializeDayPlanArray() {
 
     dayPlanArray = ["", "", "", "", "", "", "", "", "", "", "", ""];
@@ -57,13 +64,6 @@ $(document).ready(function () {
 
   // Sending the Day Planner array to storage
   localStorage.setItem("saved-plan", JSON.stringify(dayPlanArray));
-
-  // Writing the stored plans to the planner.
-  function writeThePlans() {
-    planTextArea.each(function (index) {
-      $(this).text(dayPlanArray[index]);
-    })
-  }
 
   // Someone has entered a plan and clicked save, now let's save the plan!
   timeBlock.on("click", function () {
@@ -91,7 +91,7 @@ $(document).ready(function () {
   // This function sets the sliding clock position and colors for the time blocks 
   function colorCode() {
     // Setting the clock
-    let currentTime = moment();
+    let currentTime = moment().subtract("41", "m");
     clockDisplay.text(currentTime.format("h:mm"));
 
     // The sliding clock positioning
@@ -104,7 +104,7 @@ $(document).ready(function () {
 
     // Jquery .each to run through time block divs and asses past/present/future class.
     planBox.each(function () {
-
+      $(this).removeClass("current-hour", "past-hour", "future-hour");
       if (parseInt($(this).attr("id")) === 8 && parseInt($(this).attr("id")) >= clockHour) {
         $(this).addClass("current-hour");
       } else if (parseInt($(this).attr("id")) === 18 && parseInt($(this).attr("id")) <= clockHour) {
@@ -120,6 +120,7 @@ $(document).ready(function () {
   }
   // We're going to run the color code function every second to update the clock and set the colors.
   setInterval(function () {
+
     colorCode();
 
     // check current date to clear calendar each day
