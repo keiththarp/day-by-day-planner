@@ -91,7 +91,7 @@ $(document).ready(function () {
   // This function sets the sliding clock position and colors for the time blocks 
   function colorCode() {
     // Setting the clock
-    let currentTime = moment().subtract("41", "m");
+    let currentTime = moment();
     clockDisplay.text(currentTime.format("h:mm"));
 
     // The sliding clock positioning
@@ -104,17 +104,21 @@ $(document).ready(function () {
 
     // Jquery .each to run through time block divs and asses past/present/future class.
     planBox.each(function () {
-      $(this).removeClass("current-hour", "past-hour", "future-hour");
-      if (parseInt($(this).attr("id")) === 8 && parseInt($(this).attr("id")) >= clockHour) {
-        $(this).addClass("current-hour");
-      } else if (parseInt($(this).attr("id")) === 18 && parseInt($(this).attr("id")) <= clockHour) {
-        $(this).addClass("current-hour");
-      } else if (parseInt($(this).attr("id")) < clockHour) {
-        $(this).addClass("past-hour");
-      } else if (parseInt($(this).attr("id")) === clockHour) {
-        $(this).addClass("current-hour");
+      const _this = $(this);
+
+      if (parseInt(_this.attr("id")) === 8 && parseInt(_this.attr("id")) >= clockHour) {
+        _this.addClass("current-hour");
+      } else if (parseInt(_this.attr("id")) === 18 && parseInt(_this.attr("id")) <= clockHour) {
+        _this.removeClass("future-hour");
+        _this.addClass("current-hour");
+      } else if (parseInt(_this.attr("id")) < clockHour) {
+        _this.removeClass("current-hour");
+        _this.addClass("past-hour");
+      } else if (parseInt(_this.attr("id")) === clockHour) {
+        _this.removeClass("future-hour");
+        _this.addClass("current-hour");
       } else {
-        $(this).addClass("future-hour");
+        _this.addClass("future-hour");
       }
     });
   }
