@@ -1,4 +1,4 @@
-# Day-By-Day-Planner
+# Day-By-Day Planner
 A lesson in presence. Day By Day planner, a day planner for the current day. No planning for tomorrow or wasting time on the past. Keep your day organized at a glance with the Day by Day planner.
 
 Eliminate the stress by focussing on today. Get control of your schedule and relax with Day By Day Planner, the stylish, attractive, easy-to-use today only scheduler.
@@ -6,6 +6,13 @@ Eliminate the stress by focussing on today. Get control of your schedule and rel
 - View the app here - https://keiththarp.github.io/day-by-day-planner/
 
 ![Day By Day Planner Screen shot](./assets/screen-shot.png)
+
+## Technologies Used to Create Day-By-Day
+* HTML
+* CSS
+* JavaScript
+* Jquery
+* Moment.JS
 
 ## Early Steps
 
